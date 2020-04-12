@@ -1,0 +1,25 @@
+---
+- name: Set SELinux to disabled state
+  selinux:
+    state: disabled
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Enable IPv4 forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    state: present
+    reload: yes
+
+- name: Disable firewalld
+  service:
+    name: firewalld
+    state: stopped
+    enabled: false
+- name: Install k3s required packages
+  yum:
+    name:
+      - container-selinux
+      - selinux-policy-base
+      - https://rpm.rancher.io/k3s-selinux-0.1.1-rc1.el7.noarch.rpm
+    state: present
