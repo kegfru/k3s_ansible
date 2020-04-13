@@ -18,3 +18,7 @@
     cacheable: yes
 - debug:
     msg: "{{ node_token.content | b64decode | regex_replace('\n', '') }}"
+- name: Wait for kubectl binary
+  wait_for:
+    path: /usr/local/bin/kubectl
+- include: k8s.yml
