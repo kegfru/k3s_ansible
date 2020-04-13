@@ -10,5 +10,6 @@ Edit `hosts` file with actual hosts, change vars if needed.
 `ansible-playbook k3s_ansible/lan.yml -i k3s_ansible/hosts`
 
 ## Kubernetes Dashboard
-Run `kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 10443:443 --address 0.0.0.0` from Master
-Go to https://master-ip:10443 and authorize with token from `kubectl -n kube-system describe secret admin-user`
+1. Copy token from `kubectl -n kube-system describe secret admin-user`
+2. Run `kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 10443:443 --address 0.0.0.0` from Master
+3. Go to https://master-ip:10443 and authorize with token
