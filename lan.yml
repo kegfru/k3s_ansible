@@ -16,6 +16,10 @@
   become: true
   vars:
     k3s_ver: v1.17.4+k3s1
+    k8s_dashboard_ver: v2.0.0-beta6
+    # v2.0.0-rc7 doesn't work
+    # fatal: [master1]: FAILED! => {"msg": "Timeout (12s) waiting for privilege escalation prompt: "}
+    # k8s_dashboard_ver: v2.0.0-rc7
   roles:
     - k3s/master
 

@@ -8,17 +8,9 @@
     executable: /usr/bin/pip
     name: ['openshift>=0.6', 'PyYAML>=3.11']
     extra_args: --ignore-installed
-- name: copy service-account.yaml
-  copy:
-    src: service-account.yaml
-    dest: /root/service-account.yaml
-- name: copy cluster-role.yaml
-  copy:
-    src: cluster-role.yaml
-    dest: /root/cluster-role.yaml
-- name: Download dashboard and metric server
+- name: Download dashboard and metric server yaml
   get_url:
-    url: https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta6/aio/deploy/recommended.yaml
+    url: https://raw.githubusercontent.com/kubernetes/dashboard/{{ k8s_dashboard_ver }}/aio/deploy/recommended.yaml
     dest: /root/recommended.yaml
 - name: Apply kubernetes/dashboard
   k8s:
@@ -26,12 +18,20 @@
     apply: yes
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
+- name: copy service-account.yaml
+  copy:
+    src: service-account.yaml
+    dest: /root/service-account.yaml
 - name: Apply from service-account file
   k8s:
     src: /root/service-account.yaml
     apply: yes
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
+- name: copy cluster-role.yaml
+  copy:
+    src: cluster-role.yaml
+    dest: /root/cluster-role.yaml
 - name: Apply from cluster-role file
   k8s:
     src: /root/cluster-role.yaml
