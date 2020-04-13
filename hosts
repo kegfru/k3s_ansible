@@ -1,10 +1,10 @@
 [local]
 manager ansible_connection=local ansible_python_interpreter="/usr/bin/python2.7"
 
-[k8s_master]
+[k3s_master]
 master1 ansible_ssh_host="k8s-master1" ansible_ssh_user="ilgiz" ansible_ssh_private_key_file="~/.ssh/id_rsa" ansible_python_interpreter="/usr/bin/python2.7"
 
-[k8s_slave]
+[k3s_slave]
 slave1 ansible_ssh_host="k8s-slave1" ansible_ssh_user="ilgiz" ansible_ssh_private_key_file="~/.ssh/id_rsa" ansible_python_interpreter="/usr/bin/python2.7"
 slave2 ansible_ssh_host="k8s-slave2" ansible_ssh_user="ilgiz" ansible_ssh_private_key_file="~/.ssh/id_rsa" ansible_python_interpreter="/usr/bin/python2.7"
 slave3 ansible_ssh_host="k8s-slave3" ansible_ssh_user="ilgiz" ansible_ssh_private_key_file="~/.ssh/id_rsa" ansible_python_interpreter="/usr/bin/python2.7"
