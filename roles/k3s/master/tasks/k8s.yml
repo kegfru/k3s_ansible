@@ -39,7 +39,8 @@
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
 - debug:
-    msg: "Run port-forward with      # kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 10443:443 --address 0.0.0.0"
+    msg: "Copy long token string from   # kubectl -n kube-system describe secret admin-user"
 - debug:
-    msg: "Login with                 # kubectl -n kube-system describe secret admin-user"
-
+    msg: "Run port-forward on master    # kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 10443:443 --address 0.0.0.0"
+- debug:
+    msg: "Open https://{{ hostvars['master1']['ansible_facts']['fqdn'] }}:10443 and login with token"
