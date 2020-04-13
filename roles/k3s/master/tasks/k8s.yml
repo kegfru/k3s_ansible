@@ -38,5 +38,8 @@
     apply: yes
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
-# kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 10443:443 --address 0.0.0.0
-# kubectl -n kube-system describe secret admin-user
+- debug:
+    msg: "Run port-forward with      # kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 10443:443 --address 0.0.0.0"
+- debug:
+    msg: "Login with                 # kubectl -n kube-system describe secret admin-user"
+
