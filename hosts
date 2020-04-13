@@ -10,5 +10,5 @@ slave2 ansible_ssh_host="k8s-slave2" ansible_ssh_user="ilgiz" ansible_ssh_privat
 slave3 ansible_ssh_host="k8s-slave3" ansible_ssh_user="ilgiz" ansible_ssh_private_key_file="~/.ssh/id_rsa" ansible_python_interpreter="/usr/bin/python2.7"
 
 [k3s_cluster:children]
-k8s_master
-k8s_slave
+k3s_master
+k3s_slave
