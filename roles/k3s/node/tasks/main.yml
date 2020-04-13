@@ -5,7 +5,7 @@
     removes: /usr/local/bin/k3s-agent-uninstall.sh
 - name: Using get.k3s.io shell script to run k3s
   shell: curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_ver }} K3S_URL=https://{{ hostvars['master1']['ansible_facts']['fqdn'] }}:6443 K3S_TOKEN={{ hostvars['master1']['ansible_facts']['token'] }} sh -
-- debug:
-    msg: "{{ hostvars['master1']['ansible_facts']['fqdn'] }}"
-- debug:
-    msg: "{{ hostvars['master1']['ansible_facts']['token'] }}"
+# - debug:
+#     msg: "{{ hostvars['master1']['ansible_facts']['fqdn'] }}"
+# - debug:
+#     msg: "{{ hostvars['master1']['ansible_facts']['token'] }}"
