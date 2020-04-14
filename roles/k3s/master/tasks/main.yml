@@ -4,23 +4,23 @@
   args:
     removes: /usr/local/bin/k3s-uninstall.sh
 - name: Using get.k3s.io shell script to run k3s
-  #   Use secret instead of token
+  # Use secret
   shell: curl -sfL https://get.k3s.io | INSTALL_K3S_SELINUX_WARN=true INSTALL_K3S_VERSION={{ k3s_ver }} K3S_CLUSTER_SECRET="agent-secret" sh -
-#  # Or use node-token as usual
-#  shell: curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_ver }} sh -
-#- name: Wait for node-token
-#  wait_for:
-#    path: /var/lib/rancher/k3s/server/node-token
-#- name: Read node-token from master
-#  slurp:
-#    src: /var/lib/rancher/k3s/server/node-token
-#  register: node_token
-#- name: Store Master node-token
-#  set_fact:
-#    token: "{{ node_token.content | b64decode | regex_replace('\n', '') }}"
-#    cacheable: yes
-#- debug:
-#    msg: "{{ node_token.content | b64decode | regex_replace('\n', '') }}"
+  # Or use node-token as usual
+  # shell: curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_ver }} sh -
+- name: Wait for node-token
+  wait_for:
+    path: /var/lib/rancher/k3s/server/node-token
+- name: Read node-token from master
+  slurp:
+    src: /var/lib/rancher/k3s/server/node-token
+  register: node_token
+- name: Store Master node-token
+  set_fact:
+    token: "{{ node_token.content | b64decode | regex_replace('\n', '') }}"
+    cacheable: yes
+- debug:
+    msg: "{{ node_token.content | b64decode | regex_replace('\n', '') }}"
 - name: Wait for kubectl binary
   wait_for:
     path: /usr/local/bin/kubectl
