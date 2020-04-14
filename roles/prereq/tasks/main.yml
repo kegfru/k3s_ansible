@@ -16,10 +16,12 @@
     name: firewalld
     state: stopped
     enabled: false
-- name: Install k3s required packages
-  yum:
-    name:
-      - container-selinux
-      - selinux-policy-base
-      - https://rpm.rancher.io/k3s-selinux-0.1.1-rc1.el7.noarch.rpm
-    state: present
+# disable because
+# INSTALL_K3S_SELINUX_WARN=true
+# - name: Install k3s required packages
+#   yum:
+#     name:
+#       - container-selinux
+#       - selinux-policy-base
+#       - https://rpm.rancher.io/k3s-selinux-0.1.1-rc1.el7.noarch.rpm
+#     state: present
