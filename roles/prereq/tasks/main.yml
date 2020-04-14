@@ -25,3 +25,5 @@
 #       - selinux-policy-base
 #       - https://rpm.rancher.io/k3s-selinux-0.1.1-rc1.el7.noarch.rpm
 #     state: present
+- name: Disable swap
+  shell: swapoff -a
