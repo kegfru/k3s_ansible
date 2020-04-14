@@ -5,7 +5,6 @@
     removes: /usr/local/bin/k3s-agent-uninstall.sh
 - name: Using get.k3s.io shell script to run k3s
   # Use secret
-  # shell: curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent -t agent-secret --server https://{{ hostvars['master1']['ansible_facts']['fqdn'] }}:6443" INSTALL_K3S_VERSION={{ k3s_ver }} sh -
   shell: curl -sfL https://get.k3s.io | INSTALL_K3S_SELINUX_WARN=true K3S_URL=https://{{ hostvars['master1']['ansible_facts']['fqdn'] }}:6443 INSTALL_K3S_VERSION={{ k3s_ver }} K3S_CLUSTER_SECRET="agent-secret" sh -
   # Or use node-token as usual
   # shell: curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_ver }} K3S_URL=https://{{ hostvars['master1']['ansible_facts']['fqdn'] }}:6443 K3S_TOKEN={{ hostvars['master1']['ansible_facts']['token'] }} sh -
